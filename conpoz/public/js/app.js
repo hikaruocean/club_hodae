@@ -1,20 +1,26 @@
 $(function() {
     var lastScrollVal = undefined;
+    var iosBufferPx = 300;
     $(window).scroll(function(e) {
         if (lastScrollVal) {
             if (lastScrollVal > $(this).scrollTop()) {
                 //page up
+                iosBufferPx = 300;
                 if ($('#nav-bar').css('position') != 'fixed') {
                     $('#nav-bar').css({position: 'fixed', top: '0px'});
                 }
-            } else {
+                lastScrollVal = $(this).scrollTop();
+            } else if (lastScrollVal + iosBufferPx <= $(this).scrollTop()) {
                 //page down
+                iosBufferPx = 0;
                 if ($('#nav-bar').css('position') == 'fixed') {
                     $('#nav-bar').css({position: 'absolute', top: $(this).scrollTop()});
                 }
+                lastScrollVal = $(this).scrollTop();
             }
+        } else {
+            lastScrollVal = $(this).scrollTop();
         }
-        lastScrollVal = $(this).scrollTop();
     });
     $('#setting').click(function (e) {
         var left = '';
