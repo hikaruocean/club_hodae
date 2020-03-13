@@ -1,29 +1,30 @@
+* {
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
 html {
     background-color: #e0e0ce;
-    box-sizing: border-box;
     font-size: 10px;
     color: #474747;
 }
 body {
     background-color: #e0e0ce;
+    font-size: 2rem;
 }
 ul {
     list-style-type: none;
     list-style-position: outside;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 li {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 a {
     margin: 0;
     padding: 0;
-    /* border: 1px solid black; */
-    box-sizing: border-box;
     text-decoration:none;
 
 }
@@ -32,6 +33,7 @@ div {
 }
 span {
     box-sizing: border-box;
+    display: inline-block;
 }
 
 #nav-bar {
@@ -41,7 +43,7 @@ span {
     height: 6rem;
     width: 100%;
     background-color: #048ba8;
-    z-index: 50;
+    z-index: 30;
     overflow: hidden;
 }
 #nav-bar ul {
@@ -49,7 +51,7 @@ span {
     position: absolute;
 }
 #nav-bar ul li {
-    width: 10%;
+    width: 12.5%;
     height: 6rem;
     font-size: 3rem;
     text-align: center;
@@ -69,15 +71,24 @@ body #nav-bar ul .active {
     position: relative;
     top: 6rem;
 }
-.post {
-    background-color: #f0f0fe;
+.tab {
+    display: none;
+}
+.btn {
+    cursor: pointer;
+}
+.btn:hover {
+    color: #f2af29;
+}
+.post, .club {
+    background-color: #ffffff;
     font-size: 2.0rem;
     margin-top: 1.5rem;
-    padding: 1rem;
-    padding-bottom: 0;
+    padding: 0 1rem;
 }
-.post-poster-info {
+.post-poster, .club-info {
     height: 6rem;
+    margin-bottom: 1rem;
 }
 .post-interactive-status  a {
     height: 4rem;
@@ -104,4 +115,155 @@ body #nav-bar ul .active {
 }
 .post-interactive a:hover {
     color: #f2af29;
+}
+.post-post, .club-desc {
+    width: 100%;
+    border-top:1px solid #048ba8;
+}
+
+.club-desc-content {
+    margin: 1rem 0;
+}
+
+.post-post a {
+    color: #048ba8;
+    height: 12rem;
+    padding: 4rem 0;
+    font-size: 4rem;
+    text-align: center;
+    display: inline-block;
+}
+.post-post #post-post-btn {
+    width: 100%;
+}
+.post-post a:hover {
+    color: #f2af29;
+}
+.user-sc-photo, .club-sc-photo {
+    height: 4rem;
+    width: 4rem;
+	border-radius: 0.5rem;
+	box-shadow: 0 0 0.3rem rgba(0,0,0,0.8);
+}
+.post-poster-img, .club-info-img {
+    height: 6rem;
+    width: 4rem;
+    padding: 1rem 0;
+    float: left;
+}
+.post-poster-info, .club-info-info {
+    height: 6rem;
+    float: left;
+}
+.post-poster-info-name, .club-info-info-name {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    height: 2rem;
+}
+.post-poster-info-time, .club-info-info-time {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    height: 2rem;
+}
+.post-poster-operate {
+    height: 6rem;
+    width: 4rem;
+    float: right;
+}
+.post-poster-operate a {
+    position: relative;
+    top: 1.5rem;
+    color: #048ba8;
+    height: 3rem;
+    width: 4rem;
+    text-align: center;
+}
+#post-poster-operate-menu {
+    width: 100%;
+    height: 24rem;
+    color: #e0e0ce;
+    background-color: #048ba8;
+    text-align: center;
+    font-size: 4rem;
+    position: fixed;
+    bottom: -24rem;
+    z-index: 50;
+}
+#post-poster-operate-menu div{
+    padding: 2rem;
+    height: 8rem;
+    border-top: 1px solid #e0e0ce;
+}
+#cover {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 40;
+    display: none;
+}
+#post-write, #post-edit, #post-inner {
+    background-color: #ffffff;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 50;
+    display: none;
+}
+.post-content textarea {
+    background-color: #e0e0ce;
+    width: 100%;
+    border: 0px;
+}
+
+.post-write-operate-menu {
+    box-sizing: border-box;
+    height: 6rem;
+    width: 100%;
+    background-color: #048ba8;
+}
+.post-write-operate-menu ul {
+    width: 100%;
+}
+.post-write-operate-menu ul li {
+    width: 50%;
+    height: 6rem;
+    font-size: 3rem;
+    text-align: center;
+    padding-top: 1.5rem;
+    margin: 0;
+    color:  #e0e0ce;
+    border-bottom: 0.1rem solid #048ba8;
+}
+.post-write-operate-menu ul li:hover {
+    color:  #f2af29;
+}
+.post-inner-operate-menu {
+    box-sizing: border-box;
+    height: 6rem;
+    width: 100%;
+    background-color: #048ba8;
+}
+.post-inner-operate-menu ul {
+    width: 100%;
+}
+.post-inner-operate-menu ul li {
+    width: 100%;
+    height: 6rem;
+    font-size: 3rem;
+    text-align: center;
+    padding-top: 1.5rem;
+    margin: 0;
+    color:  #e0e0ce;
+    border-bottom: 0.1rem solid #048ba8;
+}
+.post-inner-operate-menu ul li:hover {
+    color:  #f2af29;
+}
+.post-write-panel {
+    padding: 2rem;
+}
+.view-display {
+    display: block;
 }
