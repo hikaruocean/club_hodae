@@ -7,11 +7,13 @@ var body = '{{body}}';
 var navBar = '{{nav-bar}}';
 var tabWall = '{{tab-wall}}';
 var tabInfo = '{{tab-info}}';
+var tabQrcode = '{{tab-qrcode}}';
 function initialAppPage () {
     $('body').prepend(body);
     $('#nav-bar').html(navBar);
     $('.tab[tab="wall"]').html(tabWall);
     $('.tab[tab="info"]').html(tabInfo);
+    $('.tab[tab="qrcode"]').html(tabQrcode);
     $('#post-write').html(postWrite);
     $('#post-edit').html(postEdit);
     $('#post-inner').html(postInner);
@@ -27,6 +29,7 @@ function initialAppPage () {
     $('#post-contents').append(render(postContentElement, jsonObject));
     $('#post-contents').append(render(postContentElement, jsonObject));
     $('#post-mark-contents').append(render(postContentElement, jsonObject));
+    $('body').append('<script src="/js/video.js"></script>');
 }
 $(function() {
     initialAppPage();
@@ -36,7 +39,9 @@ $(function() {
     var iosBufferPx = 300;
     var scrollPosObject = {};
 
-    $('.tab[tab="wall"]').addClass('view-display');
+    var initialTab = 'wall';
+    $('#nav-bar-ul li[tab="' + initialTab + '"]').addClass('active');
+    $('.tab[tab="' + initialTab + '"]').addClass('view-display');
     /*
     處理畫面上下滑動事件 UI
     */
@@ -85,6 +90,11 @@ $(function() {
          }
          $('#nav-bar-ul li').removeClass('active');
          $(this).addClass('active');
+         if (tabVal == 'qrcode') {
+             startVideoStream();
+         } else {
+             stopVideoStream();
+         }
     });
     /*
     po 文選單事件 UI
@@ -118,7 +128,7 @@ $(function() {
     $(document).on('click', '.post-interactive-status-reply, .post-interactive-reply', function (e) {
         e.preventDefault();
         lockScroll();
-        $('#post-inner').css({display: 'block', height: ($(window).height() + 300) + 'px'});
+        $('#post-inner').css({display: 'block', height: ($(window).height()) + 'px'});
     });
     /*
     退出 po 內頁 UI

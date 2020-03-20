@@ -86,7 +86,7 @@ class Frontend
                 $varNameAry[$varName] = preg_replace(array('/[\r\n]/', '/>\s+</','/\s{2,}/'), array('', '><', ' '), file_get_contents($dir . $file));
             }
             closedir($dh);
-            $appJs = preg_replace(array('/\/\*.*\*\//'), array(''), file_get_contents($dir . 'app.js'));
+            $appJs = preg_replace(array('/\/\*(.|\n)*?\*\//'), array(''), file_get_contents($dir . 'app.js'));
             foreach ($varNameAry as $key => $val) {
                 $appJs = str_replace('{{' . $key . '}}', $val, $appJs);
             }
