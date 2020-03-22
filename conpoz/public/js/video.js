@@ -1,3 +1,5 @@
+var audio = new Audio('/bee.mp3');
+
 var videoElement = document.querySelector('video');
 var canvas = document.getElementById('pcCanvas');
 var mobileCanvas = document.getElementById('mobileCanvas');
@@ -33,6 +35,10 @@ var decodeCallback = function (ptr, len, resultIndex, resultCount) {
   console.log(String.fromCharCode.apply(null, result));
   var imagePayload = String.fromCharCode.apply(null, result);
   barcode_result.textContent = imagePayload;
+  audio.play();
+  window.stream.getTracks()[0].applyConstraints({
+      advanced: [{torch: false}]
+  });
   buttonGo.disabled = false;
   if (isPC) {
     canvas.style.display = 'block';
@@ -92,6 +98,9 @@ function dataURItoBlob(dataURI) {
 
 // add button event
 buttonGo.onclick = function () {
+    window.stream.getTracks()[0].applyConstraints({
+        advanced: [{torch: true}]
+    });
   if (isPC) {
     canvas.style.display = 'none';
   } else {
