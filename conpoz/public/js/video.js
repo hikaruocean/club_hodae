@@ -166,7 +166,6 @@ function scanBarcode() {
   }
 }
 // https://github.com/samdutton/simpl/tree/gh-pages/getusermedia/sources
-var videoSelect = document.querySelector('select#videoSource');
 
 // navigator.mediaDevices.enumerateDevices().then(gotDevices).then(getStream).catch(handleError);
 
@@ -181,7 +180,7 @@ function gotDevices(deviceInfos) {
       option.text = deviceInfo.label || 'camera ' +
         (videoSelect.length + 1);
       videoSelect.appendChild(option);
-    } else {455
+    } else {
       console.log('Found one other kind of source/device: ', deviceInfo);
     }
   }
@@ -223,5 +222,21 @@ function stopVideoStream () {
 }
 
 function startVideoStream () {
-    navigator.mediaDevices.enumerateDevices().then(gotDevices).then(getStream).catch(handleError);
+    if (!window.stream) {
+
+        // navigator.mediaDevices.enumerateDevices().then(gotDevices).then(getStream).catch(handleError);
+        // 上面的寫法在 IOS 中無法正確找到 back camera
+        // 下面的寫法是個 workaround
+        var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+        if (iOS) {
+            navigator.mediaDevices.getUserMedia({video:true}).then(function (stream) {
+                navigator.mediaDevices.enumerateDevices().then(gotDevices).then(getStream).catch(handleError);
+            });
+        } else {
+            navigator.mediaDevices.enumerateDevices().then(gotDevices).then(getStream).catch(handleError);
+        }
+
+    } else {
+        getStream();
+    }
 }
